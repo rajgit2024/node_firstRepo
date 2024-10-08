@@ -8,4 +8,5 @@ const userSchema=mongoose.Schema({
     email:String
 })
 
+//Add schemaa and export to app.js file
 module.exports=mongoose.model("user",userSchema);

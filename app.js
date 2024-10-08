@@ -32,6 +32,7 @@ app.get("/delete",async(req,res)=>{
   res.send(readUser);
 })
 
+//for port file
 app.listen(porrt,()=>{
   console.log(`Server is running on port${porrt}`);
   
