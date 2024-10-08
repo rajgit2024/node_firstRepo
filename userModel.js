@@ -1,6 +1,11 @@
 const mongoose=require("mongoose");
 
-mongoose.connect(`mongodb://127.0.0.1:27017/mongopractice`);
+//const mongoURL=process.env.MONGO_URL_LOCAL;
+const mongoURL=process.env.MONGO_URL;
+mongoose.connect(mongoURL,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 const userSchema=mongoose.Schema({
     name:String,

@@ -1,8 +1,9 @@
 const express=require("express");
 const userModel=require("./userModel");
+require("dotenv").config();
 
 const app=express();
-const porrt=3000;
+const porrt=process.env.PORT||3000;
 
 app.get('/',(req,res)=>{
   res.send("you can do this raj");
@@ -23,7 +24,7 @@ app.get("/update",async(req,res)=>{
 })
 //Read model(table)-- we have two type of read method 1.all read 2.single col read
 app.get("/read",async(req,res)=>{
-  const readUser= await userModel.find();
+  const readUser= await userModel.find({name:"Raju"});
   res.send(readUser);
 })
 //Delete objects from array
