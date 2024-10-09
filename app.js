@@ -1,40 +1,23 @@
 const express=require("express");
 const userModel=require("./userModel");
+const passport=require("passport");
+const passportStrategy=require("passport-local");
 require("dotenv").config();
 
-const app=express();
-const porrt=process.env.PORT||3000;
+const PORT=process.env.PORT||3000;
 
-app.get('/',(req,res)=>{
-  res.send("you can do this raj");
-})
-app.get('/create',async(req,res)=>{
-   const createdUser= await userModel.create({
-    name:"Rohan",
-    username:"raju2012",
-    email:"raj@2005" 
-  })
-  res.send(createdUser);
-})
-//update an element
-app.get("/update",async(req,res)=>{
- const updateUser= await userModel.findOneAndUpdate(
-  {username:"Raj"},{name:"Raju"},{new:true})
-  res.send(updateUser);
-})
-//Read model(table)-- we have two type of read method 1.all read 2.single col read
-app.get("/read",async(req,res)=>{
-  const readUser= await userModel.find({name:"Raju"});
-  res.send(readUser);
-})
-//Delete objects from array
-app.get("/delete",async(req,res)=>{
-  const readUser= await userModel.findOneAndDelete({name:"Raj"});
-  res.send(readUser);
-})
+app.get("/",(req,res)=>{
+res.send("Welcome to our Hotel");
+} )
+
+const personRoutes = require("./routes/menuRoutes");
+const menuRoutes= require("./routes/personRoutes");
+
+app.use('./person',personRoutes);
+app.use('./menu',menuRoutes);
 
 //for port file
-app.listen(porrt,()=>{
+app.listen(PORT,()=>{
   console.log(`Server is running on port${porrt}`);
   
 })
